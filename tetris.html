@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tetris</title>
+  <style>
+    body{margin:0;overflow:hidden;background:#000;}
+    canvas{display:block;margin:auto;}
+  </style>
+</head>
+<body>
+<canvas id="c" width="200" height="400"></canvas>
+<script>
+const c=document.getElementById("c"),x=c.getContext("2d"),b=20,w=10,h=20,B=Array.from({length:h},()=>Array(w).fill(0)),T=[[[1,1,1],[0,1,0]],[[1,1],[1,1]],[[0,1,1],[1,1,0]],[[1,1,0],[0,1,1]],[[1,1,1,1]],[[1,1,1],[1,0,0]],[[1,1,1],[0,0,1]]];let p={s:T[0],x:3,y:0};function dB(){x.clearRect(0,0,c.width,c.height),B.forEach((r,y)=>r.forEach((v,x)=>v&&d(x,y,"#0ff"))),p.s.forEach((r,dy)=>r.forEach((v,dx)=>v&&d(p.x+dx,p.y+dy,"#f0f")));}function d(x,y,c){x.fillStyle=c;x.fillRect(x*b,y*b,b,b);x.strokeStyle="#000";x.strokeRect(x*b,y*b,b,b);}function m(dx,dy){p.x+=dx;p.y+=dy;dB();}document.addEventListener("keydown",e=>{if(e.key=="ArrowLeft")m(-1,0);if(e.key=="ArrowRight")m(1,0);if(e.key=="ArrowDown")m(0,1);});dB();
+</script>
+</body>
+</html>
